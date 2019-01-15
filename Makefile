@@ -1,10 +1,5 @@
 CC=g++
-EXE_FILE=explore_econdata.cpp
+EXE_FILE=explore
 
-all: $(EXE_FILE)
-
-$(EXE_FILE): econdata.o econdata.hpp explore_econdata.cpp
-	$(CC) econdata.o explore_econdata.cpp -o $(EXE_FILE)
-
-econdata.o: econdata.hpp econdata.cpp
-	$(CC) -c econdata.cpp
+$(EXE_FILE): econdata.hpp explore_econdata.cpp econdata.cpp
+	$(CC) econdata.cpp explore_econdata.cpp -o $(EXE_FILE)

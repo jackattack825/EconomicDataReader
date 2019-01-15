@@ -340,7 +340,7 @@ void print_highest_median_county(county* arr, int num) {
 ** Pre-Conditions: n/a
 ** Post-Conditions: n/a
 *********************************************************************/
-void print_lowest_median(county* arr, int num) {
+void print_lowest_median_county(county* arr, int num) {
 	int med;
 	string name;
 	med = arr[0].med_income;
