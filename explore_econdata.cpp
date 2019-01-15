@@ -7,7 +7,7 @@ using namespace std;
 
 int main(int argc, char* argv[]) {
 	if (argc < 2) {
-		cout << "Missing filename.txt";
+		cout << "Missing filename.txt" << endl;
 		exit(0);
 	}
 

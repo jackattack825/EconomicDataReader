@@ -97,7 +97,7 @@ void free_state_data(struct state* arr, int num) {
 *********************************************************************/
 void explore_data(struct state* arr, int num) {
 	cout << "Here are your options for further evaluation of the data.\n1. State with highest median household income.\n2. State with lowest median household income.\n3. State with highest unemployment in 2015.";
-	cout << "\n4. State with the lowest unemployment in 2015.\n5. States in order by change in unemployment from 2007 to 2015.\n6. States in order of median hosuehold income.";
+	cout << "\n4. State with the lowest unemployment in 2015.\n5. States in order by change in unemployment from 2007 to 2015.\n6. States in order of median household income.";
 	cout << "\nYou can also select a state for doing the prvious operations on its counties. Type 7 in the slot to choose this option." << endl;
 	cout << "\n\n";
 
@@ -105,6 +105,10 @@ void explore_data(struct state* arr, int num) {
 	cout << "\n\n";
 	int x;
 	cin >> x;
+	while (x > 7 || x < 1) {
+		cout << "You chose an invalid option, choice must be between 1 and 7. Try again" << endl;
+		cin >> x;
+	}
 
 	switch (x) {
 		case 1:
@@ -272,7 +276,7 @@ void sort_median(state* arr, int num) {
 		}
 	}
 
-	cout << "Order of states by median hosuehold income is: " << endl;
+	cout << "Order of states by median household income is: " << endl;
 	for (int i = 0; i < num; i++) {
 		cout << names[i] << " ";
 	}
@@ -293,6 +297,10 @@ void choose_state(state* arr, int num) {
 		cout << i << "." << arr[i].name << " ";
 	}
 	cin >> ans;
+	while (ans > num || ans < 0) {
+		cout << "You chose an invalid state #. Number must be between 0 and " << num << endl;
+		cin >> ans;
+	}
 	cout << "\n\n";
 	cout << "Now choose the operation to perform.";
 	cout << "Here are your options for further evaluation of the data.\n1. County with highest median household income.\n2. County with lowest median household income.\n3. County with highest unemployment in 2015.";
@@ -301,25 +309,29 @@ void choose_state(state* arr, int num) {
 
 	cout << "\n\n";
 	cin >> x;
+	while (x < 1 || x>6) {
+		cout << "You chose an invalid option. Choic must be between 1 and 6. Try again." << endl;
+		cin >> x;
+	}
 
 	switch (x) {
 	case 1:
-		print_highest_median_county(arr[ans].counties, num);
+		print_highest_median_county(arr[ans].counties, arr[ans].n_counties);
 		break;
 	case 2:
-		print_lowest_median_county(arr[ans].counties, num);
+		print_lowest_median_county(arr[ans].counties, arr[ans].n_counties);
 		break;
 	case 3:
-		print_highest_2015_county(arr[ans].counties, num);
+		print_highest_2015_county(arr[ans].counties, arr[ans].n_counties);
 		break;
 	case 4:
-		print_lowest_2015_county(arr[ans].counties, num);
+		print_lowest_2015_county(arr[ans].counties, arr[ans].n_counties);
 		break;
 	case 5:
-		sort_unemployment_county(arr[ans].counties, num);
+		sort_unemployment_county(arr[ans].counties, arr[ans].n_counties);
 		break;
 	case 6:
-		sort_median_county(arr[ans].counties, num);
+		sort_median_county(arr[ans].counties, arr[ans].n_counties);
 		break;
 	}
 }
@@ -451,6 +463,7 @@ void sort_median_county(county* arr, int num) {
 		data[i] = arr[i].med_income;
 		names[i] = arr[i].name;
 	}
+	struct county temp;
 	int temp;
 	string temp1;
 	for (int i = 0; i < num - 1; i++) {
