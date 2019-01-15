@@ -30,7 +30,7 @@ void read_state_data(struct state*, int, ifstream&);
 struct county* allocate_counties(int);
 void read_county_data(struct county*, int, ifstream&);
 void free_state_data(struct state*, int);
-void explore_data(state*, int);
+int explore_data(state*, int);
 void print_highest_median(state*, int);
 void print_lowest_median(state*, int);
 void print_highest_2015(state*, int);

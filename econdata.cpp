@@ -95,7 +95,7 @@ void free_state_data(struct state* arr, int num) {
 ** Pre-Conditions: n/a
 ** Post-Conditions: n/a
 *********************************************************************/
-void explore_data(struct state* arr, int num) {
+int explore_data(struct state* arr, int num) {
 	cout << "Here are your options for further evaluation of the data.\n1. State with highest median household income.\n2. State with lowest median household income.\n3. State with highest unemployment in 2015.";
 	cout << "\n4. State with the lowest unemployment in 2015.\n5. States in order by change in unemployment from 2007 to 2015.\n6. States in order of median household income.";
 	cout << "\nYou can also select a state for doing the prvious operations on its counties. Type 7 in the slot to choose this option." << endl;
@@ -133,6 +133,11 @@ void explore_data(struct state* arr, int num) {
 			choose_state(arr, num);
 			break;
 	}
+	int ans;
+	cout << "\n\n";
+	cout << "explore more data? if so type 1" << endl;
+	cin >> ans;
+	return ans;
 }
 
 /*********************************************************************
@@ -257,28 +262,21 @@ void sort_unemployment(state* arr, int num) {
 ** Post-Conditions: n/a
 *********************************************************************/
 void sort_median(state* arr, int num) {
-	int data[num];
-	string names[num];
-	for (int i = 0; i < num; i++) {
-		data[i] = arr[i].med_income;
-		names[i] = arr[i].name;
-	}
-	int temp;
-	string temp1;
+	state* st = arr;
+	state temp;
 	for (int i = 0; i < num - 1; i++) {
-		if (data[i] > data[i + 1]) {
-			temp = data[i];
-			data[i] = data[i + 1];
-			data[i + 1] = temp;
-			temp1 = names[i];
-			names[i] = names[i + 1];
-			names[i + 1] = temp1;
+		for (int j = 0; j < num - 1; j++) {
+			if (st[i].med_income > st[i + 1].med_income) {
+				temp = st[i];
+				st[i] = st[i + 1];
+				st[i + 1] = temp;
+			}
 		}
 	}
 
 	cout << "Order of states by median household income is: " << endl;
 	for (int i = 0; i < num; i++) {
-		cout << names[i] << " ";
+		cout << st[i].name << " ";
 	}
 }
 
@@ -457,28 +455,19 @@ void sort_unemployment_county(county* arr, int num) {
 ** Post-Conditions: n/a
 *********************************************************************/
 void sort_median_county(county* arr, int num) {
-	int data[num];
-	string names[num];
-	for (int i = 0; i < num; i++) {
-		data[i] = arr[i].med_income;
-		names[i] = arr[i].name;
-	}
-	struct county temp;
-	int temp;
-	string temp1;
+	county* ct = arr;
+	county temp;
 	for (int i = 0; i < num - 1; i++) {
-		if (data[i] > data[i + 1]) {
-			temp = data[i];
-			data[i] = data[i + 1];
-			data[i + 1] = temp;
-			temp1 = names[i];
-			names[i] = names[i + 1];
-			names[i + 1] = temp1;
+		for (int j = 0; j < num - 1; j++) {
+			if (ct[i].med_income > ct[i + 1].med_income) {
+				temp = ct[i];
+				ct[i] = ct[i + 1];
+				ct[i + 1] = temp;
+			}
 		}
 	}
-
 	cout << "Order of counties by median household income is: " << endl;
 	for (int i = 0; i < num; i++) {
-		cout << names[i] << " ";
+		cout << ct[i].name << " ";
 	}
 }

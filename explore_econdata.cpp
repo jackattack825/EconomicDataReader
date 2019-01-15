@@ -24,16 +24,11 @@ int main(int argc, char* argv[]) {
 	read_state_data(st, numStates, inFile);
 
 	cout << "Sucessfully read file. Now select a menu option for further evaluation of the data inputted" << endl;
-
-	explore_data(st, numStates);
-	int ans = 1;
-	while (ans = 1) {
-		cout << "\n\n";
-		cout << "explore more data? if so type 1";
-		cin >> ans;
-		if (ans)
-			explore_data(st, numStates);
-	}
-
+	int ans;
+	do {
+		ans= explore_data(st, numStates);
+	} while (ans);
+	
+	
 	free_state_data(st, numStates);
 }
