@@ -18,8 +18,8 @@ using namespace std;
 ** Post-Conditions: n/a
 *********************************************************************/
 struct state* allocate_states(int num) {
-
-
+	state* arr = new state[num];
+	return arr;
 }
 
 /*********************************************************************
@@ -30,8 +30,15 @@ struct state* allocate_states(int num) {
 ** Post-Conditions: n/a
 *********************************************************************/
 void read_state_data(struct state* st, int num, std::ifstream& file) {
-
-
+	for (int i = 0; i < num; i++) {
+		file >> st[i].name;
+		file >> st[i].unemployed_2007;
+		file >> st[i].unemployed_2015;
+		file >> st[i].med_income;
+		file >> st[i].n_counties;
+		st[i].counties = allocate_counties(st[i].n_counties);
+		read_county_data(st[i].counties, st[i].n_counties, file);
+	}
 }
 
 /*********************************************************************
@@ -42,8 +49,8 @@ void read_state_data(struct state* st, int num, std::ifstream& file) {
 ** Post-Conditions: n/a
 *********************************************************************/
 struct county* allocate_counties(int num) {
-
-
+	county* arr = new county[num];
+	return arr;
 }
 
 /*********************************************************************
@@ -54,7 +61,12 @@ struct county* allocate_counties(int num) {
 ** Post-Conditions: n/a
 *********************************************************************/
 void read_county_data(struct county* ct, int num, std::ifstream& file) {
-
+	for (int i = 0; i < num; i++) {
+		file >> ct[i].name;
+		file >> ct[i].unemployed_2007;
+		file >> ct[i].unemployed_2015;
+		file >> ct[i].med_income;
+	}
 
 }
 
@@ -66,6 +78,11 @@ void read_county_data(struct county* ct, int num, std::ifstream& file) {
 ** Post-Conditions: n/a
 *********************************************************************/
 void free_state_data(struct state* arr, int num) {
-
+	for (int i = 0; i < num; i++) {
+		for (int j = 0; j < arr[i].n_counties; j++) {
+			delete arr[i].counties;
+		}
+	}
+	delete[] arr;
 
 }
