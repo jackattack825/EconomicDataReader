@@ -8,6 +8,3 @@ $(EXE_FILE): econdata.o econdata.hpp explore_econdata.cpp
 
 econdata.o: econdata.hpp econdata.cpp
 	$(CC) -c econdata.cpp
-clean:
-	rm -f *.o $(EXE_FILE)
-
