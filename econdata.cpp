@@ -99,8 +99,10 @@ void explore_data(struct state* arr, int num) {
 	cout << "Here are your options for further evaluation of the data.\n1. State with highest median household income.\n2. State with lowest median household income.\n3. State with highest unemployment in 2015.";
 	cout << "\n4. State with the lowest unemployment in 2015.\n5. States in order by change in unemployment from 2007 to 2015.\n6. States in order of median hosuehold income.";
 	cout << "\nYou can also select a state for doing the prvious operations on its counties. Type 7 in the slot to choose this option." << endl;
+	cout << "\n\n";
 
 	cout << "Now select an option" << endl;
+	cout << "\n\n";
 	int x;
 	cin >> x;
 
@@ -160,6 +162,7 @@ void print_lowest_median(state* arr, int num) {
 	int med;
 	string name;
 	med = arr[0].med_income;
+	name = arr[0].name;
 	for (int i = 0; i < num; i++) {
 		if (arr[i].med_income < med) {
 			med = arr[i].med_income;
@@ -177,7 +180,7 @@ void print_lowest_median(state* arr, int num) {
 ** Post-Conditions: n/a
 *********************************************************************/
 void print_highest_2015(state* arr, int num) {
-	int ue;
+	float ue;
 	string name;
 	ue = arr[0].unemployed_2015;
 	for (int i = 0; i < num; i++) {
@@ -197,7 +200,7 @@ void print_highest_2015(state* arr, int num) {
 ** Post-Conditions: n/a
 *********************************************************************/
 void print_lowest_2015(state* arr, int num) {
-	int ue;
+	float ue;
 	string name;
 	ue = arr[0].unemployed_2015;
 	for (int i = 0; i < num; i++) {
@@ -284,14 +287,22 @@ void sort_median(state* arr, int num) {
 *********************************************************************/
 void choose_state(state* arr, int num) {
 	int ans;
+	int x;
 	cout << "Choose one of the following states by number:" << endl;
 	for (int i = 0; i < num; i++) {
-		cout << i << ". " << arr[i].name;
+		cout << i << "." << arr[i].name << " ";
 	}
 	cin >> ans;
+	cout << "\n\n";
 	cout << "Now choose the operation to perform.";
+	cout << "Here are your options for further evaluation of the data.\n1. County with highest median household income.\n2. County with lowest median household income.\n3. County with highest unemployment in 2015.";
+	cout << "\n4. County with the lowest unemployment in 2015.\n5. County in order by change in unemployment from 2007 to 2015.\n6. County in order of median household income.";
+	cout << "\nYou can also select a county for doing the prvious operations on its counties.";
 
-	switch (ans) {
+	cout << "\n\n";
+	cin >> x;
+
+	switch (x) {
 	case 1:
 		print_highest_median_county(arr[ans].counties, num);
 		break;
@@ -361,7 +372,7 @@ void print_lowest_median_county(county* arr, int num) {
 ** Post-Conditions: n/a
 *********************************************************************/
 void print_highest_2015_county(county* arr, int num) {
-	int ue;
+	float ue;
 	string name;
 	ue = arr[0].unemployed_2015;
 	for (int i = 0; i < num; i++) {
@@ -381,7 +392,7 @@ void print_highest_2015_county(county* arr, int num) {
 ** Post-Conditions: n/a
 *********************************************************************/
 void print_lowest_2015_county(county* arr, int num) {
-	int ue;
+	float ue;
 	string name;
 	ue = arr[0].unemployed_2015;
 	for (int i = 0; i < num; i++) {
@@ -453,7 +464,7 @@ void sort_median_county(county* arr, int num) {
 		}
 	}
 
-	cout << "Order of counties by median hosuehold income is: " << endl;
+	cout << "Order of counties by median household income is: " << endl;
 	for (int i = 0; i < num; i++) {
 		cout << names[i] << " ";
 	}

@@ -28,9 +28,12 @@ int main(int argc, char* argv[]) {
 	explore_data(st, numStates);
 	int ans = 1;
 	while (ans = 1) {
+		cout << "\n\n";
 		cout << "explore more data? if so type 1";
 		cin >> ans;
 		if (ans)
 			explore_data(st, numStates);
 	}
+
+	free_state_data(st, numStates);
 }
