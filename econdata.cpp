@@ -80,9 +80,7 @@ void read_county_data(struct county* ct, int num, std::ifstream& file) {
 *********************************************************************/
 void free_state_data(struct state* arr, int num) {
 	for (int i = 0; i < num; i++) {
-		for (int j = 0; j < arr[i].n_counties; j++) {
-			delete arr[i].counties;
-		}
+		delete[] arr[i].counties;
 	}
 	delete[] arr;
 

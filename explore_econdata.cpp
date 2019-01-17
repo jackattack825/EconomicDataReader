@@ -27,7 +27,7 @@ int main(int argc, char* argv[]) {
 	int ans;
 	do {
 		ans= explore_data(st, numStates);
-	} while (ans);
+	} while (ans==1);
 	
 	
 	free_state_data(st, numStates);
